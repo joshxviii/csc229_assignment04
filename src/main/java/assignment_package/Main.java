@@ -94,6 +94,10 @@ public class Main {
          * OUTPUT:
          * 378
         */
+
+
+        System.out.println( binarySearch(4,{1,2,3,4,5,6,7,8,9,10,12,3}) );
+        
         //endregion
     
     }
@@ -165,8 +169,17 @@ public class Main {
         else return n2 + sumOf7s(n1, n2 - 1); // if n2 is a multiple of 7 and it to the next multiple of 7 if any.
     }
 
-    static int binarySearch() {                         // This Function uses a binary search to find an int in an array recursively.
-        return 0;
+    static int binarySearch(int num, int[] list) {                       // This Function uses a calls the binary search function with more parameters.
+        this(num, list, 0, list.length)
     }
 
+    static int binarySearch(int num, int[] list, int low, int high) {    // This Function uses a binary search to find an int in an array recursively.
+        int mid;
+        mid = (high + low) / 2;
+        if (num == list[mid]) return list[mid]
+        else {
+            if (num < list[mid]) return binarySearch(num, list, low, mid) ;
+            else return binarySearch(num, list, mid+1, high)
+        }
+    }
 }

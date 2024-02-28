@@ -96,7 +96,15 @@ public class Main {
         */
 
 
-        System.out.println( binarySearch(4,{1,2,3,4,5,6,7,8,9,10,12,3}) );
+        int[] list = {1,2,4,9,12,16,23,36,39};
+        int num = 12;
+        int result = binaryIndexSearch(num,list);
+        if (result!=-1) System.out.println(num + " is found at index " + result + ".");
+        else System.out.println(num + " is not in the list.");
+        /*
+         * OUTPUT:
+         * 12 is found at index 4.
+        */
         
         //endregion
     
@@ -169,17 +177,18 @@ public class Main {
         else return n2 + sumOf7s(n1, n2 - 1); // if n2 is a multiple of 7 and it to the next multiple of 7 if any.
     }
 
-    static int binarySearch(int num, int[] list) {                       // This Function uses a calls the binary search function with more parameters.
-        this(num, list, 0, list.length)
+    static public int binaryIndexSearch(int num, int[] list) {                       // This Function uses a calls the binary search function with more parameters.
+        return binaryIndexSearch(num, list, 0, list.length);
     }
 
-    static int binarySearch(int num, int[] list, int low, int high) {    // This Function uses a binary search to find an int in an array recursively.
+    static public int binaryIndexSearch(int num, int[] list, int low, int high) {    // This Function uses a binary search to find an int in an array recursively.
         int mid;
         mid = (high + low) / 2;
-        if (num == list[mid]) return list[mid]
+        if (high - low <= 0) return -1;
+        else if (num == list[mid]) return mid;
         else {
-            if (num < list[mid]) return binarySearch(num, list, low, mid) ;
-            else return binarySearch(num, list, mid+1, high)
+            if (num < list[mid]) return binaryIndexSearch(num, list, low, mid) ;
+            else return binaryIndexSearch(num, list, mid+1, high);
         }
     }
 }
